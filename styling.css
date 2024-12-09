@@ -1,0 +1,58 @@
+/* styling.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+    padding: 20px;
+}
+
+.profile-pic {
+    width: 80px;
+    /* Reduced the width */
+    height: 80px;
+    /* Reduced the height */
+    margin: 0 auto 20px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+.linkedin-logo img {
+    width: 144px;
+    /* Adjusted to a sensible size */
+    height: auto;
+    /* Maintain original aspect ratio */
+    margin-top: 10px;
+    /* Adjusted to position logo properly */
+    cursor: pointer;
+    /* Makes the image clickable */
+}
+
+h1 {
+    font-size: 24px;
+    margin: 0 0 10px;
+    color: #333;
+}
+
+.bio {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+    margin: 0 0 20px;
+}

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>kubectl Cheat Sheet</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin:0; padding:10px; font-size:12px; color:#333; }
+    h1 { font-size:18px; margin-bottom:12px; }
+    table { width:100%; border-collapse:collapse; table-layout:fixed; }
+    th, td { border:1px solid #ccc; padding:6px; vertical-align:top; word-wrap:break-word; }
+    th { background:#f0f0f0; font-weight:600; text-align:left; }
+    .section td { background:#fafafa; font-weight:600; }
+    .inputs div { margin-bottom:4px; }
+    .inputs label { font-size:11px; font-weight:500; }
+    .inputs input { width:100%; box-sizing:border-box; margin:2px 0; font-size:12px; }
+    .rendered pre { margin:0; font-family:Menlo, Monaco, Consolas, monospace; font-size:11px;
+                     background:#f7f7f7; padding:4px; border-radius:3px; overflow-x:auto; }
+    .copy-btn { font-size:11px; padding:2px 6px; margin-top:4px; }
+  </style>
+</head>
+<body>
+
+  <h1>kubectl Cheat Sheet</h1>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:35%">Template</th>
+        <th style="width:30%">Values</th>
+        <th style="width:35%">Rendered &amp; Copy</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- Setup -->
+      <tr class="section"><td colspan="3">Setup</td></tr>
+      <tr data-template="plugins=(git kubectl)\nalias k=kubectl">
+        <td><pre>plugins=(git kubectl)
+alias k=kubectl</pre></td>
+        <td class="inputs"></td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+
+      <!-- 1. Apply & Manage -->
+      <tr class="section"><td colspan="3">1. Apply &amp; Manage</td></tr>
+      <tr data-template="k apply -f &lt;file.yaml&gt; -n &lt;namespace&gt;">
+        <td><pre>k apply -f &lt;file.yaml&gt; -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>file.yaml:</label><input data-ph="<file.yaml>" placeholder="file.yaml"></div>
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="k scale deployment/&lt;deployment-name&gt; --replicas=&lt;count&gt; -n &lt;namespace&gt;">
+        <td><pre>k scale deployment/&lt;deployment-name&gt; --replicas=&lt;count&gt; -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>deployment-name:</label><input data-ph="<deployment-name>" placeholder="deployment-name"></div>
+          <div><label>count:</label><input data-ph="<count>" placeholder="count"></div>
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="k patch deployment/&lt;deployment-name&gt; -p '{\"spec\":{\"replicas\":&lt;count&gt;}}' -n &lt;namespace&gt;">
+        <td><pre>k patch deployment/&lt;deployment-name&gt; -p '{"spec":{"replicas":&lt;count&gt;}}' -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>deployment-name:</label><input data-ph="<deployment-name>" placeholder="deployment-name"></div>
+          <div><label>count:</label><input data-ph="<count>" placeholder="count"></div>
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+
+      <!-- 2. Inspect & List -->
+      <tr class="section"><td colspan="3">2. Inspect &amp; List</td></tr>
+      <tr data-template="k get pods -n &lt;namespace&gt;">
+        <td><pre>k get pods -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="k get deployments -n &lt;namespace&gt;">
+        <td><pre>k get deployments -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="k get svc -n &lt;namespace&gt;">
+        <td><pre>k get svc -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="k get nodes">
+        <td><pre>k get nodes</pre></td>
+        <td class="inputs"></td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="k get ns">
+        <td><pre>k get ns</pre></td>
+        <td class="inputs"></td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="k get events -n &lt;namespace&gt;">
+        <td><pre>k get events -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+
+      <!-- 3. Describe & Explain -->
+      <tr class="section"><td colspan="3">3. Describe &amp; Explain</td></tr>
+      <tr data-template="k describe pod/&lt;pod-name&gt; -n &lt;namespace&gt;">
+        <td><pre>k describe pod/&lt;pod-name&gt; -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>pod-name:</label><input data-ph="<pod-name>" placeholder="pod-name"></div>
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="k describe deployment/&lt;deployment-name&gt; -n &lt;namespace&gt;">
+        <td><pre>k describe deployment/&lt;deployment-name&gt; -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>deployment-name:</label><input data-ph="<deployment-name>" placeholder="deployment-name"></div>
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="k describe node/&lt;node-name&gt;">
+        <td><pre>k describe node/&lt;node-name&gt;</pre></td>
+        <td class="inputs">
+          <div><label>node-name:</label><input data-ph="<node-name>" placeholder="node-name"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="k explain deployment">
+        <td><pre>k explain deployment</pre></td>
+        <td class="inputs"></td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+
+      <!-- 4. Logs & Debug -->
+      <tr class="section"><td colspan="3">4. Logs &amp; Debug</td></tr>
+      <tr data-template="k logs pod/&lt;pod-name&gt; -n &lt;namespace&gt;">
+        <td><pre>k logs pod/&lt;pod-name&gt; -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>pod-name:</label><input data-ph="<pod-name>" placeholder="pod-name"></div>
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="k logs -f pod/&lt;pod-name&gt; -n &lt;namespace&gt;">
+        <td><pre>k logs -f pod/&lt;pod-name&gt; -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>pod-name:</label><input data-ph="<pod-name>" placeholder="pod-name"></div>
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="k logs -f pod/&lt;pod-name&gt; -c &lt;container-name&gt; -n &lt;namespace&gt;">
+        <td><pre>k logs -f pod/&lt;pod-name&gt; -c &lt;container-name&gt; -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>pod-name:</label><input data-ph="<pod-name>" placeholder="pod-name"></div>
+          <div><label>container-name:</label><input data-ph="<container-name>" placeholder="container-name"></div>
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="k get deployment/&lt;deployment-name&gt; -o yaml -n &lt;namespace&gt;">
+        <td><pre>k get deployment/&lt;deployment-name&gt; -o yaml -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>deployment-name:</label><input data-ph="<deployment-name>" placeholder="deployment-name"></div>
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="watch -n 2 'k get pods -n &lt;namespace&gt;'">
+        <td><pre>watch -n 2 'k get pods -n &lt;namespace&gt;'</pre></td>
+        <td class="inputs">
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+
+      <!-- 5. Exec & Port-Forward -->
+      <tr class="section"><td colspan="3">5. Exec &amp; Port-Forward</td></tr>
+      <tr data-template="k exec -it pod/&lt;pod-name&gt; -n &lt;namespace&gt; -- /bin/bash">
+        <td><pre>k exec -it pod/&lt;pod-name&gt; -n &lt;namespace&gt; -- /bin/bash</pre></td>
+        <td class="inputs">
+          <div><label>pod-name:</label><input data-ph="<pod-name>" placeholder="pod-name"></div>
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="k port-forward svc/&lt;service-name&gt; &lt;local-port&gt;:&lt;remote-port&gt; -n &lt;namespace&gt;">
+        <td><pre>k port-forward svc/&lt;service-name&gt; &lt;local-port&gt;:&lt;remote-port&gt; -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>service-name:</label><input data-ph="<service-name>" placeholder="service-name"></div>
+          <div><label>local-port:</label><input data-ph="<local-port>" placeholder="local-port"></div>
+          <div><label>remote-port:</label><input data-ph="<remote-port>" placeholder="remote-port"></div>
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+
+      <!-- 6. Rollouts & Updates -->
+      <tr class="section"><td colspan="3">6. Rollouts &amp; Updates</td></tr>
+      <tr data-template="k rollout restart deployment/&lt;deployment-name&gt; -n &lt;namespace&gt;">
+        <td><pre>k rollout restart deployment/&lt;deployment-name&gt; -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>deployment-name:</label><input data-ph="<deployment-name>" placeholder="deployment-name"></div>
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>   
+      </tr>   
+      <tr data-template="k rollout status deployment/&lt;deployment-name&gt; -n &lt;namespace&gt;">
+        <td><pre>k rollout status deployment/&lt;deployment-name&gt; -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>deployment-name:</label><input data-ph="<deployment-name>" placeholder="deployment-name"></div>
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>   
+      </tr>
+
+      <!-- 7. Config & Context -->
+      <tr class="section"><td colspan="3">7. Config &amp; Context</td></tr>
+      <tr data-template="kubectl config set-context --current --namespace=&lt;namespace&gt;">
+        <td><pre>kubectl config set-context --current --namespace=&lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="kubectl config get-contexts">
+        <td><pre>kubectl config get-contexts</pre></td>
+        <td class="inputs"></td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="kubectl config use-context &lt;context&gt;">
+        <td><pre>kubectl config use-context &lt;context&gt;</pre></td>
+        <td class="inputs">
+          <div><label>context:</label><input data-ph="<context>" placeholder="context"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+
+      <!-- 8. Eviction & Deletion -->
+      <tr class="section"><td colspan="3">8. Evict / Delete</td></tr>
+      <tr data-template="kubectl evict pod/&lt;pod-name&gt; --namespace=&lt;namespace&gt;">
+        <td><pre>kubectl evict pod/&lt;pod-name&gt; --namespace=&lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>pod-name:</label><input data-ph="<pod-name>" placeholder="pod-name"></div>
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="kubectl delete pod/&lt;pod-name&gt; --grace-period=0 --force --namespace=&lt;namespace&gt;">
+        <td><pre>kubectl delete pod/&lt;pod-name&gt; --grace-period=0 --force --namespace=&lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>pod-name:</label><input data-ph="<pod-name>" placeholder="pod-name"></div>
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+
+      <!-- 9. Cluster Info & Metrics -->
+      <tr class="section"><td colspan="3">9. Cluster Info &amp; Metrics</td></tr>
+      <tr data-template="k cluster-info">
+        <td><pre>k cluster-info</pre></td>
+        <td class="inputs"></td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="k top nodes">
+        <td><pre>k top nodes</pre></td>
+        <td class="inputs"></td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="k top pods -n &lt;namespace&gt;">
+        <td><pre>k top pods -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+
+      <!-- 10. File Copy -->
+      <tr class="section"><td colspan="3">10. File Copy</td></tr>
+      <tr data-template="k cp &lt;pod-name&gt;:&lt;source-path&gt; &lt;destination-path&gt; -n &lt;namespace&gt;">
+        <td><pre>k cp &lt;pod-name&gt;:&lt;source-path&gt; &lt;destination-path&gt; -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>pod-name:</label><input data-ph="<pod-name>" placeholder="pod-name"></div>
+          <div><label>source-path:</label><input data-ph="<source-path>" placeholder="source-path"></div>
+          <div><label>destination-path:</label><input data-ph="<destination-path>" placeholder="destination-path"></div>
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+      <tr data-template="k cp &lt;source-path&gt; &lt;pod-name&gt;:&lt;destination-path&gt; -n &lt;namespace&gt;">
+        <td><pre>k cp &lt;source-path&gt; &lt;pod-name&gt;:&lt;destination-path&gt; -n &lt;namespace&gt;</pre></td>
+        <td class="inputs">
+          <div><label>source-path:</label><input data-ph="<source-path>" placeholder="source-path"></div>
+          <div><label>pod-name:</label><input data-ph="<pod-name>" placeholder="pod-name"></div>
+          <div><label>destination-path:</label><input data-ph="<destination-path>" placeholder="destination-path"></div>
+          <div><label>namespace:</label><input data-ph="<namespace>" placeholder="namespace"></div>
+        </td>
+        <td class="rendered"><pre></pre><button class="copy-btn">Copy</button></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <script>
+    document.querySelectorAll('tbody tr[data-template]').forEach(row => {
+      const template = row.getAttribute('data-template');
+      const inputs = Array.from(row.querySelectorAll('.inputs input'));
+      const renderedPre = row.querySelector('.rendered pre');
+      const copyBtn = row.querySelector('.copy-btn');
+
+      inputs.forEach(inp => inp.addEventListener('input', update));
+
+      function update() {
+        let cmd = template;
+        inputs.forEach(inp => {
+          const ph = inp.dataset.ph;
+          const val = inp.value;
+          cmd = cmd.split(ph).join(val);
+        });
+        renderedPre.textContent = cmd;
+      }
+
+      update();
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(renderedPre.textContent);
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => copyBtn.textContent = 'Copy', 1000);
+      });
+    });
+  </script>
+
+</body>
+</html>
